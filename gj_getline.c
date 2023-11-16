@@ -16,7 +16,7 @@ char *gj_getline(void)
         size_t buffer_size = 0;
         ssize_t chars_read;
 
-        printf("Jerry&Goodnews$ ");
+       /* printf("Jerry&Goodnews$ ");*/
 
 
         if ((chars_read = getline(&buffer, &buffer_size,stdin)) == -1)

@@ -9,7 +9,7 @@ char *gj_strtok(char *string, const char *delim);
  * Return: tokenized string on success, else NULL.
  */
 
-char *gj_strtoken(char *string, const char *delim)
+char *gj_strtok(char *string, const char *delim)
 {
         static char *nxt_tkn;
 

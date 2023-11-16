@@ -22,8 +22,8 @@ char *gj_getenv(char *name)
                 return (NULL);
         }
 
-	for (; *env != NULL; env++)
-        /*for (char **env = environ; *env != NULL; env++)*/
+	/*for (; *env != NULL; env++)*/
+        for (env = environ; *env != NULL; env++)
         {
                 ent_env = *env;
 
