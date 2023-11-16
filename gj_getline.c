@@ -19,7 +19,7 @@ char *gj_getline(void)
         printf("Jerry&Goodnews$ ");
 
 
-        if (chars_read = getline(&buffer, buffer_size,stdin) == -1)
+        if ((chars_read = getline(&buffer, &buffer_size,stdin)) == -1)
         {
                 if (feof(stdin))
                 {

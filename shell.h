@@ -17,6 +17,17 @@
 
 size_t _strlen(const char *string);
 char *gj_getenv(char *name);
+int gj_strncmp(char *string1, char *string2, int numb);
+int _putchar(char chr);
+char *gj_getline(void);
+int error_putchar(char chr);
+void print_int(int value);
+int _int_len(int integer);
+char *gj_non_interactive_get_line(void);
+char *gj_strtok(char *string, const char *delim);
+void calls_and_executes(char *args[], char *getline_val);
+int _fprintf(FILE *stream, const char *format, ...);
+int _printf(const char *format, ...);
 
 extern char **environ;
 #endif

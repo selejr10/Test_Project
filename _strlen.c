@@ -13,7 +13,7 @@ size_t _strlen(const char *string)
         length = 0;
 
         while (*string++)
-                length++
+                length++;
 
-                        return (length);
+        return (length);
 }

@@ -17,8 +17,10 @@ char *gj_non_interactive_get_line(void);
 
 char *gj_non_interactive_get_line(void)
 {
-        ssize_t read_value;
-
+        int index = 0;
+	size_t buffer_size = INITIAL_BUFFER_SIZE;
+	ssize_t read_value;
+	char *temp;
         char *buffer = malloc(INITIAL_BUFFER_SIZE * sizeof(char));
 
         if (buffer == NULL)
@@ -26,9 +28,6 @@ char *gj_non_interactive_get_line(void)
                 perror("Memory Allocation Fail");
                 exit(EXIT_FAILURE);
         }
-
-        int index = 0;
-        size_t buffer_size = INITIAL_BUFFER_SIZE;
 
          while ((read_value = read(STDIN_FILENO, &buffer[index], 1)) > 0)
         {
@@ -42,7 +41,7 @@ char *gj_non_interactive_get_line(void)
                 if (index >= (int)buffer_size - 1)
                 {
                         buffer_size += BUFFER_INCREMENT;
-                        char *temp = realloc(buffer, buffer_size);
+                        temp = realloc(buffer, buffer_size);
 
                         if (temp == NULL)
                         {
@@ -51,7 +50,7 @@ char *gj_non_interactive_get_line(void)
                                 exit(EXIT_FAILURE);
                         }
 
-                        buffer - temp;
+                        buffer = temp;
                 }
         }
 
