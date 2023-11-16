@@ -28,6 +28,8 @@ char *gj_strtok(char *string, const char *delim);
 void calls_and_executes(char *args[], char *getline_val);
 int _fprintf(FILE *stream, const char *format, ...);
 int _printf(const char *format, ...);
+void execute_builtin_command(char **command, char *valget);
+int gj_strcmp(char *s1, char *s2);
 
 extern char **environ;
 #endif

@@ -43,7 +43,7 @@ int main(void)
                 }
                 else
                 {
-                        chars_read = gj_non_interactive_getline();
+                        chars_read = gj_non_interactive_get_line();
 
                         if (chars_read == NULL)
                         {
@@ -87,7 +87,7 @@ int main(void)
                         continue;
                 }
 
-                execute_builtin_command(cmd_args, _getline_);
+                execute_builtin_command(cmd_args, chars_read);
 
                 free(chars_read);
                 free(cmd_args);
