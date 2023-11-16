@@ -2,20 +2,21 @@
 
 /**
  * _strcmp - Compare two strings
- * @s1: string
- * @s2: string
+ * @str1: string
+ * @str2: string
  *
- * Return: negative int if s1 < s2, 0 if matching, and positive int if s1 > s2
+ * Return: negative int if str1 < str2, 0 if matching,
+ * and positive int if str1 > str2
  */
 
-int gj_strcmp(char *s1, char *s2)
+int gj_strcmp(char *str1, char *str2)
 {
-	int i;
+	int gjj;
 
-	for (i = 0; s1[i] != '\0' || s2[i] != '\0'; i++)
+	for (gjj = 0; str1[gjj] != '\0' || str2[gjj] != '\0'; gjj++)
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
+		if (str1[gjj] != str2[gjj])
+			return (str1[gjj] - str2[gjj]);
 	}
 	return (0);
 }

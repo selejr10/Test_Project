@@ -1,15 +1,16 @@
 #include "shell.h"
-void execute_builtin_command(char **command, char *valget);
+
+void exec_builtin_com(char **command, char *valget);
 
 /**
- * execute_builtin_command - A function that handles builtin commands
+ * exec_builtin_com - A function that handles builtin commands
  *
  * @command: this is the command arguments to be checked.
  * @valget: getline value argument to  free.
  * Return: Always 0
  */
 
-void execute_builtin_command(char **command, char *valget)
+void exec_builtin_com(char **command, char *valget)
 {
 	char executable_file[MAX_INPUT_SIZE];
 
