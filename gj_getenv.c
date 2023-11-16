@@ -13,16 +13,17 @@ char *gj_getenv(char *name)
 {
         char **env,  *ent_env;
 
-        size_t gj;
+        size_t gj = 0;
 
-        gj = 0;
+        /*gj = 0;*/
 
         if (name == NULL)
         {
                 return (NULL);
         }
 
-        for (char **env = environ; *env != NULL; env++)
+	for (; *env != NULL; env++)
+        /*for (char **env = environ; *env != NULL; env++)*/
         {
                 ent_env = *env;
 
