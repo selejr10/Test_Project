@@ -17,57 +17,57 @@ char *gj_non_interactive_get_line(void);
 
 char *gj_non_interactive_get_line(void)
 {
-        int index = 0;
-	size_t buffer_size = INITIAL_BUFFER_SIZE;
 	ssize_t read_value;
-	char *temp;
-        char *buffer = malloc(INITIAL_BUFFER_SIZE * sizeof(char));
 
-        if (buffer == NULL)
-        {
-                perror("Memory Allocation Fail");
-                exit(EXIT_FAILURE);
-        }
+	char *buffer = malloc(INITIAL_BUFFER_SIZE * sizeof(char));
 
-         while ((read_value = read(STDIN_FILENO, &buffer[index], 1)) > 0)
-        {
-                if (buffer[index] == EOF || buffer[index] == '\n')
-                {
-                        break;
-                }
+	if (buffer == NULL)
+	{
+		perror("Memory Allocation Fail");
+		exit(EXIT_FAILURE);
+	}
 
-                index++;
+	int index = 0;
 
-                if (index >= (int)buffer_size - 1)
-                {
-                        buffer_size += BUFFER_INCREMENT;
-                        temp = realloc(buffer, buffer_size);
+	size_t buffer_size = INITIAL_BUFFER_SIZE;
 
-                        if (temp == NULL)
-                        {
-                                perror("Reallocation of memory failed");
-                                free(buffer);
-                                exit(EXIT_FAILURE);
-                        }
+	while ((read_value = read(STDIN_FILENO, &buffer[index], 1)) > 0)
+	{
 
-                        buffer = temp;
-                }
-        }
+		if (buffer[index] == EOF || buffer[index] == '\n')
+		{
+			break;
+		}
 
-        if (read_value == -1)
-        {
-                perror("Error");
-                free(buffer);
-                exit(EXIT_FAILURE);
-        }
+		index++;
 
-        if (read_value == 0)
-        {
-                free(buffer);
-                exit(EXIT_FAILURE);
-        }
+		if (index >= (int)buffer_size - 1)
+		{
 
-        buffer[index] = '\0';
+			buffer_size += BUFFER_INCREMENT;
+			char *temp = realloc(buffer, buffer_size);
 
-        return (buffer);
+			if (temp == NULL)
+			{
+				perror("Reallocation of memory failed");
+				free(buffer);
+				exit(EXIT_FAILURE);
+			}
+
+			buffer - temp;
+		}
+	}
+	if (read_value == -1)
+	{
+		perror("Error");
+		free(buffer);
+		exit(EXIT_FAILURE);
+	}
+	if (read_value == 0)
+	{
+		free(buffer);
+		exit(EXIT_FAILURE);
+	}
+	buffer[index] = '\0';
+	return (buffer);
 }

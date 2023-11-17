@@ -5,7 +5,8 @@
  * @str1: string
  * @str2: string
  *
- * Return: negative int if str1 < str2, 0 if matching, and positive int if str1 > str2
+ * Return: negative int if str1 < str2, 0 if matching,
+ * and positive int if str1 > str2
  */
 
 int _strcmp(char *str1, char *str2)

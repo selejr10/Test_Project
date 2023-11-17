@@ -8,7 +8,7 @@
 */
 int _putchar(char chr)
 {
-        return (write(1, &chr, 1));
+	return (write(1, &chr, 1));
 }
 
 
@@ -22,27 +22,23 @@ int _putchar(char chr)
 
 int gj_strncmp(char *string1, char *string2, int numb)
 {
-        int g = 0;
-        int j = 0;
+	int g = 0;
+	int j = 0;
 
-        while ((*string1 != '\0' || *string2 != '\0') && j < numb)
-        {
-                if (*string1 != *string2)
-                {
-                        g += 1;
-                }
+	while ((*string1 != '\0' || *string2 != '\0') && j < numb)
+	{
+		if (*string1 != *string2)
+		{
+			g += 1;
+		}
+			string1 = string1 + 1;
+			string2 += 1;
+			j = j + 1;
+	}
 
-                string1 = string1 + 1;
-
-                string2 += 1;
-
-                j = j + 1;
-        }
-
-        if (g != 0)
-        {
-                return (-1);
-        }
-
-        return (g);
+	if (g != 0)
+	{
+		return (-1);
+	}
+	return (g);
 }

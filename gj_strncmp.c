@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _strcmp - Compare two strings
+ * gj_strcmp - Compare two strings
  * @str1: string
  * @str2: string
  *

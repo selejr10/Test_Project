@@ -5,98 +5,85 @@ int main(void);
 
 /**
  * main - Entry point for simple shell.
- * Return: 0 on sucess.
+ * Return: 0 on success.
  */
 
 int main(void)
 {
-        bool interactive_shell;
+	bool interactive_shell;
+	char *chars_read;
+	char **cmd_args;
+	char *_prompt = "Jerry&Goodnews$ ", *token;
+	int _idx = 0;
 
-        char *chars_read;
+	interactive_shell = isatty(fileno(stdin));
 
-        char **cmd_args;
+	while (true)
+	{
+		if (interactive_shell)
+		{
+			_printf("%s", _prompt);
+			fflush(stdout);
 
-        char *_prompt = "Jerry&Goodnews$ ", *token;
+			chars_read = gj_getline();
 
-        int _idx = 0;
+			if (chars_read == NULL)
+			{
+				break;
+			}
+		}
+		else
+		{
+			chars_read = gj_non_interactive_get_line();
 
+			if (chars_read == NULL)
+			{
+				break;
+			}
+		}
 
-        interactive_shell = isatty(fileno(stdin));
+		if (strstr(chars_read, ";") != NULL)
+		{
+			free(chars_read);
+			continue;
+		}
 
+		cmd_args = malloc(sizeof(char *) * (MAX_ARGS + 1));
 
-        while (true)
-        {
+		if (cmd_args == NULL)
+		{
+			perror("Memory Allocation Fail");
+			exit(EXIT_FAILURE);
+		}
 
-                if (interactive_shell)
-                {
-                        _printf("%s", _prompt);
+		token = gj_strtok(chars_read, " \t\r\n\a");
 
-                        fflush(stdout);
+		while (token != NULL && _idx < MAX_ARGS)
+		{
+			cmd_args[_idx] = token;
+			_idx++;
+			token = gj_strtok(NULL, " \t\r\n\a");
+		}
 
-                        chars_read = gj_getline();
+		cmd_args[_idx] = NULL;
 
-                        if (chars_read == NULL)
-                        {
-                                break;
-                        }
+		if (!_idx)
+		{
+			free(chars_read);
+			free(cmd_args);
+			continue;
+		}
 
-                }
-                else
-                {
-                        chars_read = gj_non_interactive_get_line();
+		execute_builtin_command(cmd_args, chars_read);
 
-                        if (chars_read == NULL)
-                        {
+		free(chars_read);
+		free(cmd_args);
 
-                                break;
-                        }
-                }
+		if (interactive_shell == 0)
+		{
+			break;
+		}
+	}
 
-                if (strstr(chars_read, ";") != NULL)
-                {
-
-                        free(chars_read);
-                        continue;
-                }
-                cmd_args = malloc(sizeof(char *) * (MAX_ARGS + 1));
-
-                if (cmd_args == NULL)
-                {
-                        perror("Memory Allocation Fail");
-                        exit(EXIT_FAILURE);
-                }
-
-                token = gj_strtok(chars_read, " \t\r\n\a");
-
-                while (token != NULL && _idx < MAX_ARGS)
-                {
-                        cmd_args[_idx] = token;
-
-                        _idx++;
-
-                        token = gj_strtok(NULL, " \t\r\n\a");
-                }
-
-                cmd_args[_idx] = NULL;
-
-                if (!_idx)
-                {
-                        free(chars_read);
-                        free(cmd_args);
-
-                        continue;
-                }
-
-                execute_builtin_command(cmd_args, chars_read);
-
-                free(chars_read);
-                free(cmd_args);
-
-                if (interactive_shell == 0)
-                {
-                        break;
-                }
-        }
-
-        return (0);
+	return (0);
 }

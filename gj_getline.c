@@ -12,29 +12,31 @@
 
 char *gj_getline(void)
 {
-        char *buffer = NULL;
-        size_t buffer_size = 0;
-        ssize_t chars_read;
+	char *buffer = NULL;
+	size_t buffer_size = 0;
+	ssize_t chars_read;
 
-       /* printf("Jerry&Goodnews$ ");*/
+	printf("Jerry&Goodnews$ ");
 
+	chars_read = getline(&buffer, buffer_size, stdin);
 
-        if ((chars_read = getline(&buffer, &buffer_size,stdin)) == -1)
-        {
-                if (feof(stdin))
-                {
-                        printf("\n");
-                        free(buffer);
-                        exit(EXIT_SUCCESS);
-                }
+	if (chars_read == -1)
+	{
 
-                else
-                {
-                        perror("Failed to read input");
-                        free(buffer);
-                        exit(EXIT_FAILURE);
-                }
-        }
+		if (feof(stdin))
+		{
+			printf("\n");
+			free(buffer);
+			exit(EXIT_SUCCESS);
+		}
 
-        return (buffer);
+		else
+		{
+			perror("Failed to read input");
+			free(buffer);
+			exit(EXIT_FAILURE);
+		}
+	}
+
+	return (buffer);
 }

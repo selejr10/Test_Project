@@ -8,12 +8,12 @@
  */
 size_t _strlen(const char *string)
 {
-        size_t length;
+	size_t length;
 
-        length = 0;
+	length = 0;
 
-        while (*string++)
-                length++;
+	while (*string++)
+		length++;
 
-        return (length);
+	return (length);
 }
